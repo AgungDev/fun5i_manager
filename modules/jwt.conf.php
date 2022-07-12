@@ -1,6 +1,6 @@
 <?php
 
-namespace ganz\modules\fun5i\manager;
+namespace fun5i\manager\modules;
 
 
 class JwtConfig {

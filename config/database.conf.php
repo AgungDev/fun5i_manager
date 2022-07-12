@@ -1,5 +1,5 @@
 <?php 
-namespace ganz\config\fun5i\manager;
+namespace fun5i\manager\config;
 
 use PDO;
 use PDOException;
