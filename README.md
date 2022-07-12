@@ -2,6 +2,14 @@
 welcome to my service apps
 
 ### API
-[/login.php](http://localhost:40001/api/login.php) <br />
-<sub><span style="color: red;">String</span> username</sub> <br />
-<sub><span style="color: red;">String</span> password</sub> <br />
+> [/login.php](http://localhost:40001/api/login.php) <br />
+> POST(String username, String password)
+```javascript
+{"error": Bool, "messages": String, "result": String}
+```
+
+> [/register.php](http://localhost:40001/api/register.php) <br />
+> POST(String email, String username, String password, int apps)
+```javascript
+{"error": Bool, "messages": String, "result": String}
+```
