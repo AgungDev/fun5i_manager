@@ -4,6 +4,7 @@
 
 
 welcome to my service apps
+![flow chart](https://raw.githubusercontent.com/AgungDev/fun5i_manager/master/assets/images/flow_fun5i_manager.jpg?token=GHSAT0AAAAAABWQQ3DU3CDIHEMN57VHGLKMYWN7EJQ)
 
 ### API
 > [/login.php](http://localhost:40001/api/login.php) <br />
