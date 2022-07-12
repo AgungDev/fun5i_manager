@@ -1,5 +1,15 @@
 <?php 
 
-echo "Web fun5i manager";
 
 ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            HI
+        </title>
+    </head>
+    <body>
+        <?php echo "fun5i manager"; ?>
+    </body>
+</html>

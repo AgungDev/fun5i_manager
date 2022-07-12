@@ -5,6 +5,12 @@ namespace ganz\modules\fun5i\manager;
 
 class MessagesLib {
 
+	# asdasd
+	public static $SUCCESS_CREATE = 1;
+	public static $SUCCESS_READ = 2;
+	public static $SUCCESS_UPDATE = 3;
+	public static $SUCCESS_DELATE = 3;
+
 	# Messange for success and error 
 	private $message = [
 		1	=> "success create",

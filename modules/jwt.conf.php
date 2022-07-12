@@ -31,7 +31,7 @@ class JwtConfig {
 	public $signatureJwt;
 
 	private function algoritmaJwt($jsonEncode){
-		$outs;
+		$outs = null;
 
 		if ($this->algoritma[0] == $this->algJwt) {
 			// hs256
@@ -85,7 +85,7 @@ class JwtConfig {
 	//token validasi
 
 	public function validToken($token){
-		$out;
+		$out = null;
 		$error = true;
 		$tok = $this->decodeToken($token);
 		if ($tok != "wrong") {

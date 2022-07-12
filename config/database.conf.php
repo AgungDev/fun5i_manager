@@ -1,6 +1,8 @@
 <?php 
+namespace ganz\config\fun5i\manager;
 
-namespace ganz\modules\fun5i\manager;
+use PDO;
+use PDOException;
 
 class DatabaseConfig {
 
@@ -22,7 +24,7 @@ class DatabaseConfig {
 		try {
 			$this->conn = new PDO('mysql:host='. $this->host . ';dbname='. $this->db_name, $this->username, $this->password);
 			$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		}catch(PDOExcetion $e){ 
+		}catch(PDOException $e){ 
 			$this->msg = "Error : ".$e;
 			$this->error = true;
 
