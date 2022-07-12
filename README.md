@@ -2,4 +2,6 @@
 welcome to my service apps
 
 ### API
-1. [login](http://localhost:40001/api/login.php) 
+[/login.php](http://localhost:40001/api/login.php) 
+<sub><code>String</code> username</sub>
+<sub><code>String</code> password</sub>
