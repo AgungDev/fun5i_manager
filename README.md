@@ -9,10 +9,29 @@ Di karnakan hal tersebut, aku mulai merancang program yang bertujuan untuk menyi
 ![flow chart](https://raw.githubusercontent.com/AgungDev/fun5i_manager/master/assets/images/flow_fun5i_manager.jpg?token=GHSAT0AAAAAABWQQ3DU3CDIHEMN57VHGLKMYWN7EJQ)
 
 ### API
-> [/login.php](http://localhost:40001/api/login.php) <br />
-> POST(String username, String password)
+## [/api/users.php](http://localhost:40001/api/users.php) <br />
+
+> sign up(String fullname, String email, String password)
+> sign in(String email, String password)
 ```javascript
-{"error": Bool, "messages": String, "result": String}
+{
+    "error": Bool,
+    "message": String,
+    "result": {
+        "token": String
+    }
+}
+```
+
+> checkEmail(String email)
+```javascript
+{
+    "error": Bool,
+    "message": String,
+    "result": {
+        "fullname": String
+    }
+}
 ```
 
 > [/register.php](http://localhost:40001/api/register.php) <br />
