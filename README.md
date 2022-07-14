@@ -34,8 +34,3 @@ Di karnakan hal tersebut, aku mulai merancang program yang bertujuan untuk menyi
 }
 ```
 
-> [/register.php](http://localhost:40001/api/register.php) <br />
-> POST(String email, String username, String password, int apps)
-```javascript
-{"error": Bool, "messages": String, "result": String}
-```
