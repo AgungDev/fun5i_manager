@@ -69,6 +69,33 @@ class UserAccounts {
 		return json_encode($data);
 	}
 
+	public function tokenCheck($token){
+		$data = null;
+
+		try{
+			
+		}catch(Exception $e){
+			$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, $e);
+		}	
+
+		return json_encode($data);
+	}
+
+	public function updateFullname($token){
+		$data = null;
+
+		try{
+			$query = $this->db->prepare("UPDATE _users SET fullname=:fullname WHERE id=:id");
+			$query->bindParam(":id", 		$id);
+			$query->bindParam(":fullname", 		$fullname);
+			$query->execute();
+		}catch(Exception $e){
+			$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, $e);
+		}
+
+		return json_encode($data);
+	}
+
 	public function registration($fullname, $email, $password){
 		$data = null;
 		$fullname		=	htmlspecialchars( strtolower($fullname) );
