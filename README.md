@@ -8,9 +8,7 @@ Seiring dengan perkembangan ilmu pengetahuan, pembuatan aplikasiku mulai menguna
 Di karnakan hal tersebut, aku mulai merancang program yang bertujuan untuk menyimpan profile penguna aplikasiku ke dalam satu tempat penyimpanan. Rancangan tersebut, bisa di lihat pada flow chart berikut ini:
 ![flow chart](https://raw.githubusercontent.com/AgungDev/fun5i_manager/master/assets/images/flow_fun5i_manager.jpg?token=GHSAT0AAAAAABWQQ3DU3CDIHEMN57VHGLKMYWN7EJQ)
 
-# API
-## USER
-
+## USER API
 ### [/api/users.php?signup](http://localhost:40001/api/users.php?signup) <br />
 > signUp(String fullname, String email, String password) 
 ```javascript
