@@ -33,19 +33,6 @@ Di karnakan hal tersebut, aku mulai merancang program yang bertujuan untuk menyi
     }
 }
 ```
-## [/api/users.php?signin](http://localhost:40001/api/users.php?signin) <br />
-> getProfile(String token)
-```javascript
-{
-    "error": Bool,
-    "message": String,
-    "result": {
-        "id": int,
-        "name": String,
-        "email": String
-    }
-}
-```
 > getProfile(String token)
 ```javascript
 {
