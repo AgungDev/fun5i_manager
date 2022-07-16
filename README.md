@@ -11,7 +11,7 @@ Di karnakan hal tersebut, aku mulai merancang program yang bertujuan untuk menyi
 ### API
 
 ## [/api/users.php?signup](http://localhost:40001/api/users.php?signup) <br />
-> sign up(String fullname, String email, String password) 
+> signUp(String fullname, String email, String password) 
 ```javascript
 {
     "error": Bool,
@@ -23,7 +23,7 @@ Di karnakan hal tersebut, aku mulai merancang program yang bertujuan untuk menyi
 ```
 
 ## [/api/users.php?signin](http://localhost:40001/api/users.php?signin) <br />
-> sign in(String email, String password)
+> signIn(String email, String password)
 ```javascript
 {
     "error": Bool,
