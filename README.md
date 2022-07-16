@@ -8,9 +8,10 @@ Seiring dengan perkembangan ilmu pengetahuan, pembuatan aplikasiku mulai menguna
 Di karnakan hal tersebut, aku mulai merancang program yang bertujuan untuk menyimpan profile penguna aplikasiku ke dalam satu tempat penyimpanan. Rancangan tersebut, bisa di lihat pada flow chart berikut ini:
 ![flow chart](https://raw.githubusercontent.com/AgungDev/fun5i_manager/master/assets/images/flow_fun5i_manager.jpg?token=GHSAT0AAAAAABWQQ3DU3CDIHEMN57VHGLKMYWN7EJQ)
 
-### API
+# API
+## USER
 
-## [/api/users.php?signup](http://localhost:40001/api/users.php?signup) <br />
+### [/api/users.php?signup](http://localhost:40001/api/users.php?signup) <br />
 > signUp(String fullname, String email, String password) 
 ```javascript
 {
@@ -22,7 +23,7 @@ Di karnakan hal tersebut, aku mulai merancang program yang bertujuan untuk menyi
 }
 ```
 
-## [/api/users.php?signin](http://localhost:40001/api/users.php?signin) <br />
+### [/api/users.php?signin](http://localhost:40001/api/users.php?signin) <br />
 > signIn(String email, String password)
 ```javascript
 {
@@ -46,7 +47,7 @@ Di karnakan hal tersebut, aku mulai merancang program yang bertujuan untuk menyi
 }
 ```
 
-## [/api/users.php?update=fullname](http://localhost:40001/api/users.php?update=fullname) <br />
+### [/api/users.php?update=fullname](http://localhost:40001/api/users.php?update=fullname) <br />
 > updateFullname(String token, String fullname)
 ```javascript
 {
