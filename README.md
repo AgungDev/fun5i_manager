@@ -45,7 +45,7 @@ Di karnakan hal tersebut, aku mulai merancang program yang bertujuan untuk menyi
 }
 ```
 
-### [/api/users.php?update=fullname](http://localhost:40001/api/users.php?update=fullname) <br />
+### [/api/users.php?update=[fullname]](http://localhost:40001/api/users.php?update=fullname) <br />
 > updateFullname(String token, String fullname)
 ```javascript
 {
