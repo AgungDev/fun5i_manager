@@ -86,7 +86,7 @@ class UserAccounts {
 		$data = null;
 		
 		if ($this->getId($token)["error"] ){
-			$data = $this->mLib->generate(MessagesLib::$TOKEN_INVALID, $e);
+			$data = $this->mLib->generate(MessagesLib::$TOKEN_INVALID, $this->getId($token));
 		}else{
 			$id = $this->getId($token)["result"];
 			$query = $this->db->prepare("SELECT * FROM _users WHERE id=:id LIMIT 1");
