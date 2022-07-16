@@ -19,8 +19,13 @@ class MessagesLib {
 	public static $JUST_ERROR				= 100;
 	public static $FAILED_LOGIN 			= 101;
 	public static $EMAIL_EXIST	 			= 102;
+	public static $FAILED_CREATE			= 111;
+	public static $FAILED_READ				= 112;
+	public static $FAILED_UPDATE			= 113;
+	public static $FAILED_DELATE			= 114;
 	public static $EMPTY_DATA 				= 200;
 	public static $EMPTY_EMAIL 				= 201;
+	public static $TOKEN_INVALID 				= 202;
 	
 
 	# Messange for success and error 
@@ -30,14 +35,19 @@ class MessagesLib {
 		3	=> "success update",
 		4	=> "success delate",
 
-		11	=> "Success login",
-		12	=> "Success Regristration",
+		11	=> "success login",
+		12	=> "success regristration",
 
-		100	=> "Just error",
-		101	=> "Failed login",
-		102	=> "You alredy registration",
-		200	=> "[error][get] : Empty Data",
-		201	=> "[error][get] : Empty Email",
+		100	=> "just error",
+		101	=> "failed login",
+		102	=> "you alredy registration",
+		111	=> "failed create",
+		112	=> "failed read",
+		113	=> "failed update",
+		114	=> "failed delate",
+		200	=> "[error][get] : empty data",
+		201	=> "[error][get] : empty email",
+		201	=> "[error][get] : token invalid",
 		
 		
 
@@ -55,7 +65,7 @@ class MessagesLib {
 		}
 	}
 
-	public function errorFrom($data){
+	public function errorCheck($data){
 		return json_decode($data)->{"error"};
 	}
 

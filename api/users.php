@@ -5,37 +5,55 @@ require_once '../lib/user.accounts.php';
 
 use fun5i\manager\lib\UserAccounts;
 
-if (isset($_POST['email'], $_POST['password'], $_POST['fullname'])){
-    $email      = $_POST['email'];
-    $password   = $_POST['password'];
-    $fullname   = $_POST['fullname'];
+$defaultss = [
+    "error" => true,
+    "message" => "wrong parms!!",
+    "result" => "https://github.com/AgungDev/fun5i_manager"
+];
 
-    $lib        = new UserAccounts();
-    echo $lib->registration($fullname, $email, $password);
+if (isset($_GET["signup"])){
+    if (isset($_POST['email'], $_POST['password'], $_POST['fullname'])){
+        $email      = $_POST['email'];
+        $password   = $_POST['password'];
+        $fullname   = $_POST['fullname'];
     
-}elseif (isset($_POST['email'], $_POST['password'])){
-    $email      = $_POST['email'];
-    $password   = $_POST['password'];
+        $lib        = new UserAccounts();
+        echo $lib->registration($fullname, $email, $password);
+    }else{
+        echo json_encode($defaultss);
+    }
 
-    $lib        = new UserAccounts();
-    echo $lib->login($email, $password) ;
+}elseif(isset($_GET["signin"])){
+    if (isset($_POST['email'], $_POST['password'])){
+        $email      = $_POST['email'];
+        $password   = $_POST['password'];
     
-}elseif (isset($_POST['email'])){
-    $email      = $_POST['email'];
+        $lib        = new UserAccounts();
+        echo $lib->login($email, $password) ;
+        
+    }elseif(isset($_POST["token"])){
+        $token      = $_POST['token'];
 
-    $lib        = new UserAccounts();
-    echo $lib->checkEmail($email);
-    
-}elseif (isset($_POST['fullname'])){
-    $fullname      = $_POST['fullname'];
+        $lib        = new UserAccounts();
+        echo ($lib->getProfile($token));
+    }else{
+        echo json_encode($defaultss);
+    }
 
-    $lib        = new UserAccounts();
-    echo $lib->checkEmail($fullname);
-    
-}elseif (isset($_POST['token'])){
-    $token      = $_POST['token'];
+}elseif(isset($_GET["update"])){
+    $update = $_GET["update"];
+    switch($update){
+        case "fullname":
+            $token          = $_POST['token'];
+            $fullname       = $_POST['fullname'];
 
-    $lib        = new UserAccounts();
-    echo $lib->login($token);
-    
+            $lib        = new UserAccounts();
+            echo $lib->updateFullname($token, $fullname);
+            break;
+        default:
+            echo json_encode($defaultss);
+            break;
+    }
+}else{
+    echo json_encode("https://github.com/AgungDev/fun5i_manager");
 }

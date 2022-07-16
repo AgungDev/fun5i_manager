@@ -69,26 +69,75 @@ class UserAccounts {
 		return json_encode($data);
 	}
 
-	public function tokenCheck($token){
+	public function getId($token){
 		$data = null;
-
+		
 		try{
-			
+			$id = $this->jwt->getPayloadResult($token)->{"id"};
+			$data = $this->mLib->generate(MessagesLib::$SUCCESS_READ, $id);
 		}catch(Exception $e){
-			$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, $e);
+			$data = $this->mLib->generate(MessagesLib::$TOKEN_INVALID, $e);
 		}	
+
+		return ($data);
+	}
+
+	public function getProfile($token){
+		$data = null;
+		
+		if ($this->getId($token)["error"] ){
+			$data = $this->mLib->generate(MessagesLib::$TOKEN_INVALID, $e);
+		}else{
+			$id = $this->getId($token)["result"];
+			$query = $this->db->prepare("SELECT * FROM _users WHERE id=:id LIMIT 1");
+			$query->bindParam(":id", 		$id);
+			try{
+				$query->execute();
+				$result 		= array();
+
+				while ($row = $query->fetch()) {
+					$result['id']			= $row['id'];
+					$result['fullname']		= $row['fullname'];
+					$result['email']  		= $row['email'];
+				}
+
+				if (count($result) == 0) {
+					$data = $this->mLib->generate(MessagesLib::$EMPTY_DATA, null); # Empty user, failed login
+				}else{
+					$data = $this->mLib->generate(MessagesLib::$SUCCESS_READ, [
+						"id"       => (int) $result['id'],
+						"name"     => (string) $result['fullname'],
+						"email"     => (string) $result['email']
+					]); 
+				}
+				
+			}catch(Exception $e){
+				$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, $e);
+			}	
+		}
+
+		
 
 		return json_encode($data);
 	}
 
-	public function updateFullname($token){
+	public function updateFullname($token, $newName){
 		$data = null;
-
+		$newName = htmlspecialchars( strtolower($newName) );
 		try{
-			$query = $this->db->prepare("UPDATE _users SET fullname=:fullname WHERE id=:id");
-			$query->bindParam(":id", 		$id);
-			$query->bindParam(":fullname", 		$fullname);
-			$query->execute();
+			$restokid = $this->getId($token);
+			$id = $restokid["result"];
+			if( $restokid["error"] ){
+				$data = $this->mLib->generate(MessagesLib::$TOKEN_INVALID, null);
+			}else{
+				$query = $this->db->prepare("UPDATE _users SET fullname=:fullname WHERE id=:id");
+				$query->bindParam(":id", 			$id);
+				$query->bindParam(":fullname", 		$newName);
+				$query->execute();
+
+				$data = $this->mLib->generate(MessagesLib::$SUCCESS_UPDATE, ["new_name" => $newName]);				
+			}
+				
 		}catch(Exception $e){
 			$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, $e);
 		}
@@ -102,7 +151,7 @@ class UserAccounts {
 		$email			=	htmlspecialchars( strtolower($email) );
 		$password		=	htmlspecialchars( ($password) );
 
-		if ( !$this->mLib->errorFrom( $this->checkEmail($email) ) ){
+		if ( !$this->mLib->errorCheck( $this->checkEmail($email) ) ){
 			$data = $this->mLib->generate(MessagesLib::$EMAIL_EXIST, null);
 		}elseif( !filter_var($email, FILTER_VALIDATE_EMAIL) ){
 			$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, null);

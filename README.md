@@ -9,10 +9,9 @@ Di karnakan hal tersebut, aku mulai merancang program yang bertujuan untuk menyi
 ![flow chart](https://raw.githubusercontent.com/AgungDev/fun5i_manager/master/assets/images/flow_fun5i_manager.jpg?token=GHSAT0AAAAAABWQQ3DU3CDIHEMN57VHGLKMYWN7EJQ)
 
 ### API
-## [/api/users.php](http://localhost:40001/api/users.php) 
 
-> sign up(String fullname, String email, String password) <br />
-> sign in(String email, String password)
+## [/api/users.php?signup](http://localhost:40001/api/users.php?signup) <br />
+> sign up(String fullname, String email, String password) 
 ```javascript
 {
     "error": Bool,
@@ -23,13 +22,53 @@ Di karnakan hal tersebut, aku mulai merancang program yang bertujuan untuk menyi
 }
 ```
 
-> checkEmail(String email)
+## [/api/users.php?signin](http://localhost:40001/api/users.php?signin) <br />
+> sign in(String email, String password)
 ```javascript
 {
     "error": Bool,
     "message": String,
     "result": {
-        "fullname": String
+        "token": String
+    }
+}
+```
+## [/api/users.php?signin](http://localhost:40001/api/users.php?signin) <br />
+> getProfile(String token)
+```javascript
+{
+    "error": Bool,
+    "message": String,
+    "result": {
+        "id": int,
+        "name": String,
+        "email": String
+    }
+}
+```
+
+## [/api/users.php?signin](http://localhost:40001/api/users.php?signin) <br />
+> getProfile(String token)
+```javascript
+{
+    "error": Bool,
+    "message": String,
+    "result": {
+        "id": int,
+        "name": String,
+        "email": String
+    }
+}
+```
+
+## [/api/users.php?update=fullname](http://localhost:40001/api/users.php?update=fullname) <br />
+> updateFullname(String token, String fullname)
+```javascript
+{
+    "error": Bool,
+    "message": String,
+    "result": {
+        "new_name": String
     }
 }
 ```
