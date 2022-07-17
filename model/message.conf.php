@@ -47,9 +47,8 @@ class MessagesLib {
 		114	=> "failed delate",
 		200	=> "[error][get] : empty data",
 		201	=> "[error][get] : empty email",
-		201	=> "[error][get] : token invalid",
-		
-		
+
+		202	=> "[error][get] : token invalid",
 
 	];
 
