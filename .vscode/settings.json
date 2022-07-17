@@ -1,3 +1,7 @@
 {
-    "php.version": "7.4.3"
+    "php.version": "7.4.3",
+    "github.gitAuthentication": true,
+    "githubPullRequests.ignoredPullRequestBranches": [
+        "master"
+    ]
 }
