@@ -6,7 +6,7 @@ use fun5i\manager\modules\CookieManager;
 
 $cookieToken = new CookieManager(CookieManager::$_NAME_TOKEN);
 //$cookieToken->set("Agung");
-$cookieToken->delate();
+//$cookieToken->delate();
 
 
 ?>
@@ -21,8 +21,11 @@ $cookieToken->delate();
 </head>
 <body>
     <div class="container">
+        <ul>
+                <li><a href="login.php">login</a></li>
+        </ul>
          <?php 
-            var_dump($cookieToken->get());
+            //var_dump($cookieToken->get());
          ?>
     </div>
 </body>

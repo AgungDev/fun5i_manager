@@ -2,11 +2,14 @@
 
 /*
     name        : JwtConfig
-    Version     : 1.0.0
+    version     : 1.1.7
+	ver expl	: algorithm.function.bug
+	developher	: fun5i
 */
 
 namespace fun5i\manager\modules;
 
+use Exception;
 
 class JwtConfig {
 
@@ -85,66 +88,75 @@ class JwtConfig {
 	}
 
 	public function getPayloadResult($token){
-		return $this->decodeToken($token)['payload'];
+		$data = false;
+		try {
+			$data = $this->decodeToken($token)['payload'];
+		}catch(Exception $e){
+			echo $e->getMessage();
+		}
+		return $data;
 	}
 	//token validasi
 
 	public function validToken($token){
-		$out = null;
-		$error = true;
-		$tok = $this->decodeToken($token);
-		if ($tok != "wrong") {
-			//valid token
-
-			$cs =  $this->algoritmaJwt(
-				json_encode(
-					[
-						base64_encode(json_encode( (array) $tok['header'] )),
-						base64_encode(json_encode( (array) $tok['payload'] )),
-						base64_encode($this->secretKey)
-					]
-				)
-			);
-
-			if ( $cs == $tok['signature'] ){
-				$error = false;
-				$out = [
-					"error"		=> $error,
-					"msg"		=> "succes!",
-					"result"	=> ($tok['payload'])
-				];
-			}else{
-				$out = [
-					"error"		=> $error,
-					"msg"		=> "Tanda tangan server salah"
-				];
-			}
-			//$out = [$tok['signature'], $cs, base64_encode( json_encode ( $tok['header'] )) ];
-
-		}else{
-			$out = [
-				"error"		=> $error,
-				"msg"		=> "token tidak valid"
-			];
+		$noterror = false;
+		
+		try {
+			$decodetoken = $this->decodeToken($token);
+				//valid token
+				$cs =  $this->algoritmaJwt(
+					json_encode(
+						[
+							base64_encode(json_encode( (array) $decodetoken['header'] )),
+							base64_encode(json_encode( (array) $decodetoken['payload'] )),
+							base64_encode($this->secretKey)
+						]
+					)
+				);
+	
+				if ( $cs == $decodetoken['signature'] ){
+					$noterror = true;
+				}else{
+					throw new Exception("Tanda tangan server salah");
+				}
+		}catch(Exception $e){
+			echo $e;
 		}
+		
 
-		return (array) json_decode(json_encode($out));
+		return $noterror;
 	}
 
 	private function decodeToken($token){
-		$out = "wrong";
-		if ( $this->cekToken($token) ){
-			$hps64 = explode("%2E", base64_decode($token));
-
-			$out = [
-				"header" 		=> json_decode(base64_decode($hps64[0])),
-				"payload" 		=> json_decode(base64_decode($hps64[1])),
-				"signature" 	=> $hps64[2]
-			];
+		$out = false;
+		$hps64 = explode("%2E", base64_decode($token));
+		if ($this->checkString($hps64[0])){
+			if ($this->checkString($hps64[1])){
+				if ($this->checkString($hps64[2])){
+					$out = [
+						"header" 		=> json_decode(base64_decode($hps64[0])),
+						"payload" 		=> json_decode(base64_decode($hps64[1])),
+						"signature" 	=> $hps64[2]
+					];
+				}else{
+					throw new Exception("Error: signature rusak ");
+				}
+			}else{
+				throw new Exception("Error: payload rusak ");
+			}
+		}else{
+			throw new Exception("Error: Header rusak ");
 		}
-		
 		return $out;
 	}
+
+	private function checkString($s){
+		$regex = preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $s);
+		if($regex)
+		   return true;
+		else
+		   return false;
+	 }
 
 	private function cekToken($token){
 
