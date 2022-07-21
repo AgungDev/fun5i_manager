@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+form {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.logo {
+    cursor: pointer;
+    margin: 10px;
+    padding: 10px;
+    display: inline-flex;
+    border: 5px #123;
+    border-radius: 8px;
+}
+
+.logo > img {
+    width: 25px;
+}
+
+.logo > .text-logo {
+    color: #000;
+    font-size: 20px;
+    margin-left: 25px;
+    margin-right: 20px;
+}
+
+.typetext {
+    display: flex;
+    width: 100%;
+    margin: 10px;
+}
+
+.ttin{
+    width: 100%;
+}
+.ttex{
+    margin-right: 10px;
+}
+
+.typetext > div > input {
+    width: 100%;
+}
+ button {
+    margin: 10px;
+ }
