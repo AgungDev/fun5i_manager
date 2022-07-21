@@ -11,7 +11,6 @@ if($cookieManager->get() != null){
     $cookieManager->set("agung");
     echo "empty";
 }
-$cookieManager->set("agung");
 var_dump($_COOKIE);
 
 

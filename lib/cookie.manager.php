@@ -6,7 +6,7 @@ class CookieManager {
 
     private static $NAME = "fun5i_manager"; 
     private static $ERROR_NAME = "Error: empty coockie name"; 
-    private static $TIME_CLEAN = 86400 * 30;// 1 day
+    private static $TIME_CLEAN = 86400;// 1 day
 
     public function __construct(){
         
@@ -14,9 +14,8 @@ class CookieManager {
     
     public function set($token){
         if($this->get() != $token){ //change
-            setcookie(CookieManager::$NAME, null, time() - CookieManager::$TIME_CLEAN, "/");
-            unset($_COOKIE[CookieManager::$NAME]);//remove
-            
+            setcookie(CookieManager::$NAME, "", time() - CookieManager::$TIME_CLEAN, "/");
+            //unset($_COOKIE[CookieManager::$NAME]);//remove
         }
         setcookie(CookieManager::$NAME, 
             $token, 
@@ -27,8 +26,6 @@ class CookieManager {
         $data = null;
         if (isset($_COOKIE[CookieManager::$NAME])){
             $data = $_COOKIE[CookieManager::$NAME];
-        }else{
-            $data = CookieManager::$ERROR_NAME;
         }
 
         return $data;
