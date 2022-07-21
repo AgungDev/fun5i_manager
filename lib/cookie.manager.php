@@ -1,25 +1,67 @@
 <?php 
 
+/*
+    name        : CookieManager
+    Version     : 1.0.0
+*/
+
 namespace fun5i\manager\lib;
 
 class CookieManager {
 
-    private static $NAME = "fun5i_manager"; 
-    private static $ERROR_NAME = "Error: empty coockie name"; 
-    private static $TIME_CLEAN = 86400;// 1 day
 
-    public function __construct(){
-        
+    public static $_NAME_TOKEN = "_ftoken"; 
+
+    private $NAME;
+    
+    private static $EXPIRES = 86400;// 3600 = 1 Jam;  86400 1 hari
+    private static $PATH = "/";
+    private static $DOMAIN = "113.14.15.14";
+    private static $SECURE = false;
+    private static $HTTPONLY = false;
+    private static $SAMESITE = 'None';
+
+    public function __construct($names){
+        $this->NAME = $names;
+    }
+
+    public function delate(){
+        /* $arr_cookie_options = array (
+                'expires' => time() - CookieManager::$EXPIRES,
+                'path' => CookieManager::$PATH,
+                'domain' => CookieManager::$DOMAIN, 
+                'secure' => CookieManager::$SECURE,   
+                'httponly' => CookieManager::$HTTPONLY, 
+                'samesite' => CookieManager::$SAMESITE
+            ); */
+        $arr_cookie_options = array (
+            'expires' => time() - CookieManager::$EXPIRES,
+            'path' => CookieManager::$PATH,
+            'domain' => CookieManager::$DOMAIN
+        );
+        setcookie(
+            CookieManager::$NAME, 
+            "", 
+            $arr_cookie_options
+        );
     }
     
     public function set($token){
-        if($this->get() != $token){ //change
-            setcookie(CookieManager::$NAME, "", time() - CookieManager::$TIME_CLEAN, "/");
-            //unset($_COOKIE[CookieManager::$NAME]);//remove
+        if($this->get() != $token && $this->get() != null){ //change
+            $this->delate();
+            $this->set($token);
+        }else{
+            $options = array (
+                'expires' => time() + CookieManager::$EXPIRES,
+                'path' => CookieManager::$PATH,
+                'domain' => CookieManager::$DOMAIN
+            );
+            setcookie(CookieManager::$NAME, 
+                $token, 
+                $options
+            ); // add 
         }
-        setcookie(CookieManager::$NAME, 
-            $token, 
-            time() + CookieManager::$TIME_CLEAN, "/"); // add 
+        
     }
 
     public function get(){

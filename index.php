@@ -4,14 +4,11 @@ require_once "lib/cookie.manager.php";
 
 use fun5i\manager\lib\CookieManager;
 
-$cookieManager = new CookieManager();
-if($cookieManager->get() != null){
-    var_dump($cookieManager->get());
-}else{
-    $cookieManager->set("agung");
-    echo "empty";
-}
-var_dump($_COOKIE);
+$cookieManager = new CookieManager(CookieManager::$_NAME_TOKEN);
+
+var_dump($cookieManager->get());
+//$cookieManager->set("asdas");
+//$cookieManager->delate();
 
 
 ?>
