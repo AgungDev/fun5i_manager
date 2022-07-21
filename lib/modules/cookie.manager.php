@@ -5,7 +5,7 @@
     Version     : 1.0.0
 */
 
-namespace fun5i\manager\lib;
+namespace fun5i\manager\modules;
 
 class CookieManager {
 

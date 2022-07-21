@@ -1,5 +1,10 @@
 <?php
 
+/*
+    name        : JwtConfig
+    Version     : 1.0.0
+*/
+
 namespace fun5i\manager\modules;
 
 

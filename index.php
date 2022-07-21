@@ -1,12 +1,12 @@
 <?php 
 
-require_once "lib/cookie.manager.php";
+require_once "lib/modules/cookie.manager.php";
 
-use fun5i\manager\lib\CookieManager;
+use fun5i\manager\modules\CookieManager;
 
 $cookieToken = new CookieManager(CookieManager::$_NAME_TOKEN);
-$cookieToken->set("Agung");
-//$cookieToken->delate();
+//$cookieToken->set("Agung");
+$cookieToken->delate();
 
 
 ?>

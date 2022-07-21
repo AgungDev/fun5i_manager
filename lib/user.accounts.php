@@ -1,9 +1,9 @@
 <?php
 namespace fun5i\manager\lib;
 
-require_once "../config/database.conf.php";
-require_once "../model/message.conf.php";
-require_once "../modules/jwt.conf.php";
+require_once "config/database.conf.php";
+require_once "model/message.conf.php";
+require_once "modules/jwt.conf.php";
 
 use Exception;
 use fun5i\manager\config\DatabaseConfig;
