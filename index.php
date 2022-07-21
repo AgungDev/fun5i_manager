@@ -4,11 +4,9 @@ require_once "lib/cookie.manager.php";
 
 use fun5i\manager\lib\CookieManager;
 
-$cookieManager = new CookieManager(CookieManager::$_NAME_TOKEN);
-
-var_dump($cookieManager->get());
-//$cookieManager->set("asdas");
-//$cookieManager->delate();
+$cookieToken = new CookieManager(CookieManager::$_NAME_TOKEN);
+$cookieToken->set("Agung");
+//$cookieToken->delate();
 
 
 ?>
@@ -24,7 +22,7 @@ var_dump($cookieManager->get());
 <body>
     <div class="container">
          <?php 
-            
+            var_dump($cookieToken->get());
          ?>
     </div>
 </body>

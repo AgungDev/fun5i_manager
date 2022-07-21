@@ -40,34 +40,33 @@ class CookieManager {
             'domain' => CookieManager::$DOMAIN
         );
         setcookie(
-            CookieManager::$NAME, 
+            $this->NAME, 
             "", 
             $arr_cookie_options
         );
     }
     
-    public function set($token){
-        if($this->get() != $token && $this->get() != null){ //change
+    public function set($val){
+        if($this->get() != $val && $this->get() != null){ //change
             $this->delate();
-            $this->set($token);
+            $this->set($val);
         }else{
             $options = array (
                 'expires' => time() + CookieManager::$EXPIRES,
                 'path' => CookieManager::$PATH,
                 'domain' => CookieManager::$DOMAIN
             );
-            setcookie(CookieManager::$NAME, 
-                $token, 
+            setcookie($this->NAME, 
+                $val, 
                 $options
             ); // add 
         }
-        
     }
 
     public function get(){
         $data = null;
-        if (isset($_COOKIE[CookieManager::$NAME])){
-            $data = $_COOKIE[CookieManager::$NAME];
+        if (isset($_COOKIE[$this->NAME])){
+            $data = $_COOKIE[$this->NAME];
         }
 
         return $data;
