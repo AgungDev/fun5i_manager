@@ -13,13 +13,14 @@ class CookieManager {
     }
     
     public function set($token){
-        if($this->get() != $token){
+        if($this->get() != $token){ //change
+            setcookie(CookieManager::$NAME, null, time() - CookieManager::$TIME_CLEAN, "/");
             unset($_COOKIE[CookieManager::$NAME]);//remove
-            setcookie(CookieManager::$NAME, "", time() - CookieManager::$TIME_CLEAN, "/");
+            
         }
-        /* setcookie(CookieManager::$NAME, 
+        setcookie(CookieManager::$NAME, 
             $token, 
-            time() + CookieManager::$TIME_CLEAN, "/"); // add  */
+            time() + CookieManager::$TIME_CLEAN, "/"); // add 
     }
 
     public function get(){
