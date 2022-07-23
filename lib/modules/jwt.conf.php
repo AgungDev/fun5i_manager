@@ -2,7 +2,7 @@
 
 /*
     name        : JwtConfig
-    version     : 1.1.7
+    version     : 1.2.0
 	ver expl	: algorithm.function.bug
 	developher	: fun5i
 */
@@ -51,6 +51,10 @@ class JwtConfig {
 		}
 
 		return $outs;
+	}
+
+	public function setSecretkey($str){
+		$this->secretKey = $str;
 	}
 
 	private function setHeaderJwt(){
