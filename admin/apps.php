@@ -19,6 +19,11 @@ $token = $pf->checkAuth();
             <li><a href="apps.php?auth=<?php echo $token; ?>">Apps</a></li>
         </ul>
     </nav>
+
+    <div>
+        <form>
+            <input type="text" placeholder="name package">
+        </form>
+    </div>
 </body>
 </html>
-
