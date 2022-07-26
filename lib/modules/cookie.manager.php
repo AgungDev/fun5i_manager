@@ -2,7 +2,7 @@
 
 /*
     name        : CookieManager
-    Version     : 1.0.0
+    Version     : 1.0.1
 	ver expl	: algorithm.function.bug
 	developher	: fun5i
 */
@@ -27,8 +27,7 @@ class CookieManager {
     public function delate(){
         $arr_cookie_options = array (
             'expires' => time() - CookieManager::$EXPIRES,
-            'path' => CookieManager::$PATH,
-            'domain' => CookieManager::$DOMAIN
+            'path' => CookieManager::$PATH
         );
         setcookie(
             $this->NAME, 
@@ -38,29 +37,21 @@ class CookieManager {
     }
     
     public function set($val){
-        if($this->get() != $val && $this->get() != null){ //change
-            $this->delate();
-            $this->set($val);
-        }else{
-            $options = array (
-                'expires' => time() + CookieManager::$EXPIRES,
-                'path' => CookieManager::$PATH,
-                'domain' => CookieManager::$DOMAIN
-            );
-            setcookie($this->NAME, 
-                $val, 
-                $options
-            ); // add 
-        }
+        $options = array (
+            'expires' => time() + CookieManager::$EXPIRES,
+            'path' => CookieManager::$PATH
+        );
+        setcookie($this->NAME, 
+            $val, 
+            $options
+        ); // add 
+        
     }
 
     public function get(){
-        $data = null;
-        if (isset($_COOKIE[$this->NAME])){
-            $data = $_COOKIE[$this->NAME];
-        }
-
-        return $data;
+        if (isset($_COOKIE[$this->NAME]))
+            return $_COOKIE[$this->NAME];
+        return null;
     }
 
 }
