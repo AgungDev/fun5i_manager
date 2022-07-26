@@ -1,0 +1,113 @@
+/*
+    Create Form
+*/
+.creatapp{
+    margin: 20px;
+    padding: 10px;
+    border-radius: 3px;
+    background: #5a30bf;
+    border: 5px solid #996ffe;
+    width: 20%;
+}
+
+.creatapp > div {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.creatapp > div > input {
+    width: 70%;
+}
+
+.creatapp > div > button {
+    width: 20%;
+}
+
+/*
+    App table
+*/
+table {
+    
+}
+
+tbody > tr > td {
+    border: none;
+    border-style: none;
+    border-width: 0px;
+}
+
+.selectVersion{
+    width: 100%;
+}
+
+table{
+    width: 100%;
+}
+
+.apptable > thead {
+    background: #b1b1b1;
+}
+
+.apptable >thead > tr > th{
+    padding: 10px;
+    font-size: 20px;
+}
+
+.appinfo > td {
+    background: #f8ed85;
+    padding: 5px;
+}
+
+.idtable{
+    width: 10%;
+    text-align: center;
+}
+
+.newversi > input {
+    width: 75%;
+}
+
+.newversi > input[type=text] {
+    width: 75%;
+}
+
+.newversi > input[type=submit] {
+    width: 20%;
+}
+
+.newversi{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.versiontable{
+    width: 20%;
+}
+
+.actiontable{
+    width: 20%;
+}
+
+.appactionsub{
+    margin: 4px;
+}
+
+.btndis {
+    border: none;
+    background: none;
+    color: #292929;
+    cursor: not-allowed;
+    text-decoration: underline;
+}
+
+.btnena{
+    border: none;
+    background: none;
+    color: #0369cf;
+    cursor: pointer;
+    text-decoration: underline;
+}

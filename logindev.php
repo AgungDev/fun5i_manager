@@ -1,3 +1,28 @@
+<?php 
+require_once "lib/modules/cookie.manager.php";
+require_once "lib/admin.accounts.php";
+
+use fun5i\manager\modules\CookieManager;
+use fun5i\manager\lib\AdminAccounts;
+
+$cookTok = new CookieManager(CookieManager::$_NAME_TOKEN);
+/* $admin = new AdminAccounts();
+if(isset($_POST['email'], $_POST['password'])){
+    $email       = $_POST['email'];
+    $password   = $_POST['password'];
+
+    $login = json_decode($admin->login($email, $password) );
+    if (!$login->{"error"}){
+        $token = $login->{"result"}->{"token"};
+        $cookTok->set($token);
+        header("Location: admin/thedashboard.php");  
+    }else{
+        echo "<script>alert('Error: ". $login->{'message'} ."');</script>";
+    }
+} */
+$cookTok->set("agung");
+var_dump($cookTok->get());
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,22 +66,7 @@
             </form>
 
             <?php
-            require_once "lib/admin.accounts.php";
-            use fun5i\manager\lib\AdminAccounts;
-
-            $admin = new AdminAccounts();
-            if(isset($_POST['email'], $_POST['password'])){
-                $email       = $_POST['email'];
-                $password   = $_POST['password'];
-
-                $login = json_decode($admin->login($email, $password) );
-                if (!$login->{"error"}){
-                    $token = $login->{"result"}->{"token"};
-                    header("Location: admin/thedashboard.php?auth=".$token);  
-                }else{
-                    echo "<script>alert('Error: ". $login->{'message'} ."');</script>";
-                }
-            }
+            
             ?>
     </div>
 </body>

@@ -2,7 +2,7 @@
 require_once "publicfunction.php";
 
 $pf = new PublicFunction();
-$token = $pf->checkAuth();
+$pf->checkAuth();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +13,7 @@ $token = $pf->checkAuth();
     <title>The Dashboard Developher</title>
 </head>
 <body>
+    <h1>the dashboard</h1>
     <nav>
         <ul>
             <li><a href="thedashboard.php?auth=<?php echo $token; ?>">Dashboard</a></li>
