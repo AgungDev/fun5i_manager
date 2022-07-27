@@ -3,11 +3,10 @@ require_once "publicfunction.php";
 require_once "../lib/apps.php";
 
 $pf = new PublicFunction();
-$token = $pf->checkAuth();
+$pf->checkAuth();
+$token = $pf->getToken();
+$appsLib = $pf->getAppLib();
 
-use fun5i\manager\lib\AppsLib;
-
-$appsLib = new AppsLib();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,12 +27,12 @@ $appsLib = new AppsLib();
     </nav>
 
     <?php 
-    if(isset($_POST, $_GET['idApp'])){
+    if(isset($_GET['idkrt'])){
         if(isset($_POST['new'])){
             $version = $_POST['version'];
             $createNew = $appsLib->createVersion($_GET['idApp'], $version);
             if(!$createNew["error"]){
-                header("Location: apps.php?auth=".$token);
+                header("Location: apps.php");
             }else{
                 echo "<h1>".$createNew['message']." : ".$createNew['result']."</h1>";
             }
