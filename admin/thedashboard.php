@@ -16,8 +16,8 @@ $pf->checkAuth();
     <h1>the dashboard</h1>
     <nav>
         <ul>
-            <li><a href="thedashboard.php?auth=<?php echo $token; ?>">Dashboard</a></li>
-            <li><a href="apps.php?auth=<?php echo $token; ?>">Apps</a></li>
+            <li><a href="thedashboard.php">Dashboard</a></li>
+            <li><a href="apps.php">Apps</a></li>
         </ul>
     </nav>
 </body>

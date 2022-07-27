@@ -6,7 +6,7 @@ use fun5i\manager\modules\CookieManager;
 use fun5i\manager\lib\AdminAccounts;
 
 $cookTok = new CookieManager(CookieManager::$_NAME_TOKEN);
-/* $admin = new AdminAccounts();
+$admin = new AdminAccounts();
 if(isset($_POST['email'], $_POST['password'])){
     $email       = $_POST['email'];
     $password   = $_POST['password'];
@@ -19,9 +19,7 @@ if(isset($_POST['email'], $_POST['password'])){
     }else{
         echo "<script>alert('Error: ". $login->{'message'} ."');</script>";
     }
-} */
-$cookTok->set("agung");
-var_dump($cookTok->get());
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

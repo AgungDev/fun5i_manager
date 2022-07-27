@@ -1,13 +1,12 @@
 <?php 
 require_once "publicfunction.php";
-require_once "../lib/apps.php";
-
 $pf = new PublicFunction();
-$token = $pf->checkAuth();
 
-use fun5i\manager\lib\AppsLib;
 
-$appsLib = new AppsLib();
+$pf->checkAuth();
+$token = $pf->getToken();
+$appsLib = $pf->getAppLib();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,8 +22,8 @@ $appsLib = new AppsLib();
     <h1>create your own apps</h1>
     <nav>
         <ul>
-            <li><a href="thedashboard.php?auth=<?php echo $token; ?>">Dashboard</a></li>
-            <li><a href="apps.php?auth=<?php echo $token; ?>">Apps</a></li>
+            <li><a href="thedashboard.php">Dashboard</a></li>
+            <li><a href="apps.php">Apps</a></li>
         </ul>
     </nav>
 
@@ -67,7 +66,7 @@ $appsLib = new AppsLib();
             if(!$error1){
                 for($i1=0; $i1 < count($res1); $i1++){
             ?>
-            <form action="criteriaapps.php?auth=<?php echo $token."&idApp=".$res1[$i1]["id"]; ?>" method="POST">
+            <form action="criteriaapps.php" method="GET">
                 <tr class="appinfo">
                     <td class="idtable"><?php echo $res1[$i1]["id"]; ?></td>
                     <td><?php echo $res1[$i1]["name"]; ?></td>
