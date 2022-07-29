@@ -1,0 +1,86 @@
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+tr > th {
+    background: #137149;
+    padding: 16px;
+    text-align: inherit;
+    color: #d9d9d9;
+    border-bottom: dashed;
+    border-left: dashed;
+}
+
+tr > td {
+    background: #bdede3;
+    padding: 16px;
+    text-align: inherit;
+    color: #2f2f2f;
+    border-right: 1px dashed #09583a;
+    border-bottom: inset;
+}
+
+input {
+    width: 70px;
+}
+
+.kriteriax{
+    padding: 0px;
+    background: #153828;
+}
+
+.kriteriax > form > input {
+    padding: 16px;
+    border: unset;
+    background: transparent;
+    text-align: inherit;
+    color: #fff;
+}
+
+.kriteriax > form > button {
+    border: unset;
+    background: transparent;
+    text-align: inherit;
+    color: #fff;
+}
+
+.ik::-webkit-input-placeholder {
+    color: #e7e7e7;
+    font-weight: bold;
+}
+
+.ik:focus{
+    outline: none;
+}
+
+.subx {
+    padding: 0px;
+    background: #b9b9e3;
+    border-right: unset;
+}
+
+.subx > div > form > input {
+    padding: 16px;
+    border: unset;
+    background: transparent;
+    text-align: inherit;
+    color: #515151;
+}
+
+.subx > div > form > button {
+    border: unset;
+    background: transparent;
+    text-align: inherit;
+    color: #fff;
+}
+
+.is::-webkit-input-placeholder {
+    color: #e7e7e7;
+    font-weight: bold;
+}
+
+.is:focus{
+    outline: none;
+}

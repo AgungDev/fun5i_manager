@@ -65,6 +65,42 @@ class AppsLib {
 		return $data;
 	}
 
+	public function createCriteria($idver, $name){
+		$data = null;
+		$id = htmlspecialchars($idver);
+		$name = htmlspecialchars($name);
+
+		$query = $this->db->prepare("INSERT INTO _kriteria (id_version, name) VALUES (:id, :name)");
+		$query->bindParam(":id", $id);
+		$query->bindParam(":name", $name);
+
+		try{
+			$query->execute();
+			$data = $this->mLib->generate(MessagesLib::$SUCCESS_CREATE, ["id" => $id, "name" => $name]);
+		}catch(Exception $e){
+			$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, $e);
+		}
+		return $data;
+	}
+
+	public function createSubCriteria($idcri, $name){
+		$data = null;
+		$id = htmlspecialchars($idcri);
+		$name = htmlspecialchars($name);
+
+		$query = $this->db->prepare("INSERT INTO _sub_kriteria (id_kriteria, name) VALUES (:id, :name)");
+		$query->bindParam(":id", $id);
+		$query->bindParam(":name", $name);
+
+		try{
+			$query->execute();
+			$data = $this->mLib->generate(MessagesLib::$SUCCESS_CREATE, ["id" => $id, "name" => $name]);
+		}catch(Exception $e){
+			$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, $e);
+		}
+		return $data;
+	}
+
 	/*
 		read
 	*/
@@ -139,7 +175,7 @@ class AppsLib {
 					$result['id']			= $row['id'];
 					$result['id_apps']		= $row['id_apps'];
 					$result['name']			= $row['name'];
-					$result['version']			= $row['version'];
+					$result['version']		= $row['version'];
 				}
 				$data = $this->mLib->generate(MessagesLib::$SUCCESS_READ, $result); 
 			}catch(Exception $e){
@@ -149,6 +185,87 @@ class AppsLib {
 		return ($data);
 	}
 
+	public function readCriteria($idVer, $idKRT=null){
+		$data = null;
+		$idVer			=	htmlspecialchars( $idVer );
+		$idKRT			=	htmlspecialchars( $idKRT );
+		
+		if ($idKRT == null){
+			$query = $this->db->prepare("SELECT * FROM _kriteria WHERE id_version=:id ORDER BY id ASC");
+			$query->bindParam(":id", $idVer);
+			try{
+				$query->execute();
+				$result 		= array();
+				$increment = 0;
+				while ($row = $query->fetch()) {
+					$result[$increment]['id']				= $row['id'];
+					$result[$increment]['id_version']		= $row['id_version'];
+					$result[$increment]['name']				= $row['name'];
+					$increment++;
+				}
+				$data = $this->mLib->generate(MessagesLib::$SUCCESS_READ, $result); 
+			}catch(Exception $e){
+				$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, $e);
+			}
+		}else{
+			$query = $this->db->prepare("SELECT * FROM _kriteria WHERE id=:id ORDER BY id ASC");
+			$query->bindParam(":id", $idKRT);
+			try{
+				$query->execute();
+				$result 		= array();
+				while ($row = $query->fetch()) {
+					$result['id']				= $row['id'];
+					$result['id_version']		= $row['id_version'];
+					$result['name']				= $row['name'];
+				}
+				$data = $this->mLib->generate(MessagesLib::$SUCCESS_READ, $result); 
+			}catch(Exception $e){
+				$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, $e);
+			}
+		}
+		return ($data);
+	}
+
+	public function readSubCriteria($idcri, $idsub=null){
+		$data = null;
+		$idcri			=	htmlspecialchars( $idcri );
+		$idsub			=	htmlspecialchars( $idsub );
+		
+		if ($idsub == null){
+			$query = $this->db->prepare("SELECT * FROM _sub_kriteria WHERE id_kriteria=:id ORDER BY id ASC");
+			$query->bindParam(":id", $idcri);
+			try{
+				$query->execute();
+				$result 		= array();
+				$increment = 0;
+				while ($row = $query->fetch()) {
+					$result[$increment]['id']				= $row['id'];
+					$result[$increment]['id_kriteria']		= $row['id_kriteria'];
+					$result[$increment]['name']				= $row['name'];
+					$increment++;
+				}
+				$data = $this->mLib->generate(MessagesLib::$SUCCESS_READ, $result); 
+			}catch(Exception $e){
+				$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, $e);
+			}
+		}else{
+			$query = $this->db->prepare("SELECT * FROM _sub_kriteria WHERE id=:id ORDER BY id ASC");
+			$query->bindParam(":id", $idsub);
+			try{
+				$query->execute();
+				$result 		= array();
+				while ($row = $query->fetch()) {
+					$result['id']				= $row['id'];
+					$result['id_kriteria']		= $row['id_kriteria'];
+					$result['name']				= $row['name'];
+				}
+				$data = $this->mLib->generate(MessagesLib::$SUCCESS_READ, $result); 
+			}catch(Exception $e){
+				$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, $e);
+			}
+		}
+		return ($data);
+	}
 
 
 }

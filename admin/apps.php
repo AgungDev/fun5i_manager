@@ -59,7 +59,6 @@ $appsLib = $pf->getAppLib();
         </thead>
         <tbody>
             <?php 
-            
             $showApp = $appsLib->readApp();
             $error1 = $showApp['error'];
             $res1 = $showApp['result'];
@@ -76,19 +75,22 @@ $appsLib = $pf->getAppLib();
                         $showVersion = $appsLib->readVersion($res1[$i1]["id"]);
                         $error2 = $showVersion["error"];
                         $res2 = $showVersion['result'];
+                        //var_dump($showVersion);
                         
                         if(count($res2) == 0){
                         ?>
                         <div class="newversi">
-                            <input type="text" placeholder="new version" name="version" value="1.0.0"/>
-                            <input type="submit" name="new" value="new"/>
+                            <input type="text" placeholder="new version" name="newver" value="1.0.0"/>
+                            <button name="idVer" value="<?php echo $res1[$i1]['id']; ?>">
+                                new
+                            </button>
                         </div>
                         <?php 
                         }elseif(!$error2){
                             $selectVersion = true;
-                            echo "<select class='selectVersion' name='version'>";
+                            echo "<select class='selectVersion' name='idVer'>";
                             for($i2=0; $i2 < count($res2); $i2++){
-                                echo "<option>".$res2[$i2]["version"]."</option>";
+                                echo "<option value='".$res2[$i2]["id"]."'>".$res2[$i2]["version"]."</option>";
                             }
                             echo "</select>";
                         }else{
@@ -99,25 +101,25 @@ $appsLib = $pf->getAppLib();
                     <td class="actiontable">
                         <div style="display: flex;">
                             <div class="appactionsub">
-                                <button name="kriteria" <?php echo ($selectVersion)?'class="btnena"':'disabled class="btndis"'; ?>>
+                                <button name="idApp" <?php echo ($selectVersion)?'class="btnena"':'disabled class="btndis"'; ?> value="<?php echo $res1[$i1]['id']; ?>">
                                     <i class="fa fa-thin fa-cube"></i> Criteria
                                 </button>
                             </div>
 
                             <div class="appactionsub">
-                                <button name="kriteria" class="btndis">
+                                <button name="kriteria" class="btndis" disabled>
                                 <i class="fa fa-chart-area"></i> Analytics
                                 </button>
                             </div>
 
                             <div class="appactionsub">
-                                <button name="kriteria" class="btndis">
+                                <button name="kriteria" class="btndis" disabled>
                                 <i class="fa fa-info-circle"></i> About
                                 </button>
                             </div>
 
                             <div class="appactionsub">
-                                <button name="kriteria" class="btndis">
+                                <button name="kriteria" class="btndis" disabled>
                                 <i class="fa fa-trash-alt"></i> Delate
                                 </button>
                             </div>
