@@ -23,6 +23,7 @@ $cookieToken = new CookieManager(CookieManager::$_NAME_TOKEN);
     <div class="container">
         <ul>
                 <li><a href="login.php">login</a></li>
+                <li><a href="logindev.php">login dev</a></li>
         </ul>
          <?php 
             //var_dump($cookieToken->get());
