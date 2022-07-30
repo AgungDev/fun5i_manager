@@ -1,14 +1,11 @@
 <?php 
-
 require_once "lib/modules/cookie.manager.php";
 
 use fun5i\manager\modules\CookieManager;
 
-$cookieToken = new CookieManager(CookieManager::$_NAME_TOKEN);
+//$cookieToken = new CookieManager(CookieManager::$_NAME_TOKEN);
 //$cookieToken->set("Agung");
 //$cookieToken->delate();
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,14 +17,14 @@ $cookieToken = new CookieManager(CookieManager::$_NAME_TOKEN);
     <title>fun5i manager</title>
 </head>
 <body>
+    <?php 
+    //var_dump($cookieToken->get());
+    ?>
     <div class="container">
         <ul>
-                <li><a href="login.php">login</a></li>
-                <li><a href="logindev.php">login dev</a></li>
+            <li><a href="login.php" class="user">User Login</a></li>
+            <li><a href="logindev.php" class="dev">Develohper Login</a></li>
         </ul>
-         <?php 
-            //var_dump($cookieToken->get());
-         ?>
     </div>
 </body>
 </html>
