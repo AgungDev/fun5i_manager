@@ -11,13 +11,13 @@ if(isset($_POST['email'], $_POST['password'])){
     $email       = $_POST['email'];
     $password   = $_POST['password'];
 
-    $login = json_decode($admin->login($email, $password) );
-    if (!$login->{"error"}){
-        $token = $login->{"result"}->{"token"};
+    $login = $admin->login($email, $password) ;
+    if (!$login["error"]){
+        $token = $login["result"]["token"];
         $cookTok->set($token);
         header("Location: admin/thedashboard.php");  
     }else{
-        echo "<script>alert('Error: ". $login->{'message'} ."');</script>";
+        echo "<script>alert('Error: ". $login['message'] ."');</script>";
     }
 }
 ?>

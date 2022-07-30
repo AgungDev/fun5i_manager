@@ -66,7 +66,7 @@ class AdminAccounts {
 			$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, $e);
 		}	
 
-		return json_encode($data);
+		return ($data);
 	}
 
 	public function getId($token){
@@ -125,7 +125,7 @@ class AdminAccounts {
 
 		
 
-		return json_encode($data);
+		return ($data);
 	}
 
 	public function updateFullname($token, $newName){
@@ -149,7 +149,7 @@ class AdminAccounts {
 			$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, $e);
 		}
 
-		return json_encode($data);
+		return ($data);
 	}
 
 	public function registration($fullname, $email, $password){
@@ -179,7 +179,7 @@ class AdminAccounts {
 			}
 		}
 
-		return json_encode($data);
+		return ($data);
 	}
 
 	public function checkEmail($email){
@@ -204,7 +204,7 @@ class AdminAccounts {
 			$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, $e);
 		}	
 		
-		return json_encode($data);
+		return ($data);
 	}
 
 
