@@ -31,6 +31,7 @@ if(isset($_POST['email'], $_POST['password'])){
     <title>fun5i manager</title>
 </head>
 <body>
+<a href="index.php">back..</a>
     <div class="container">
         <?php 
         if(isset($_GET['error'])){

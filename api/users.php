@@ -18,7 +18,7 @@ if (isset($_GET["signup"])){
         $fullname   = $_POST['fullname'];
     
         $lib        = new UserAccounts();
-        echo $lib->registration($fullname, $email, $password);
+        echo json_encode( $lib->registration($fullname, $email, $password) );
     }else{
         echo json_encode($defaultss);
     }
@@ -29,13 +29,13 @@ if (isset($_GET["signup"])){
         $password   = $_POST['password'];
     
         $lib        = new UserAccounts();
-        echo $lib->login($email, $password) ;
+        echo json_encode( $lib->login($email, $password) );
         
     }elseif(isset($_POST["token"])){
         $token      = $_POST['token'];
 
         $lib        = new UserAccounts();
-        echo ($lib->getProfile($token));
+        echo json_encode($lib->getProfile($token));
     }else{
         echo json_encode($defaultss);
     }
@@ -48,7 +48,7 @@ if (isset($_GET["signup"])){
             $fullname       = $_POST['fullname'];
 
             $lib        = new UserAccounts();
-            echo $lib->updateFullname($token, $fullname);
+            echo json_encode( $lib->updateFullname($token, $fullname) );
             break;
         default:
             echo json_encode($defaultss);

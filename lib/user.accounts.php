@@ -66,7 +66,7 @@ class UserAccounts {
 			$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, $e);
 		}	
 
-		return json_encode($data);
+		return ($data);
 	}
 
 	public function getId($token){
@@ -118,7 +118,7 @@ class UserAccounts {
 
 		
 
-		return json_encode($data);
+		return ($data);
 	}
 
 	public function updateFullname($token, $newName){
@@ -142,7 +142,7 @@ class UserAccounts {
 			$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, $e);
 		}
 
-		return json_encode($data);
+		return ($data);
 	}
 
 	public function registration($fullname, $email, $password){
@@ -151,7 +151,7 @@ class UserAccounts {
 		$email			=	htmlspecialchars( strtolower($email) );
 		$password		=	htmlspecialchars( ($password) );
 
-		if ( !$this->mLib->errorCheck( $this->checkEmail($email) ) ){
+		if ( !$this->checkEmail($email)['error']  ){
 			$data = $this->mLib->generate(MessagesLib::$EMAIL_EXIST, null);
 		}elseif( !filter_var($email, FILTER_VALIDATE_EMAIL) ){
 			$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, null);
@@ -172,7 +172,7 @@ class UserAccounts {
 			}
 		}
 
-		return json_encode($data);
+		return ($data);
 	}
 
 	public function checkEmail($email){
@@ -197,7 +197,7 @@ class UserAccounts {
 			$data = $this->mLib->generate(MessagesLib::$JUST_ERROR, $e);
 		}	
 		
-		return json_encode($data);
+		return ($data);
 	}
 
 
