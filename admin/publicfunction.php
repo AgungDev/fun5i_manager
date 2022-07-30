@@ -38,6 +38,11 @@ class PublicFunction {
         }
     }
 
+    public function logout(){
+        header("Location: ../logindev.php");
+        $this->cookTok->delate();
+    }
+
     public function getToken(){
         return $this->token->get();
     }

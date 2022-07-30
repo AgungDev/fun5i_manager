@@ -24,6 +24,7 @@ $appsLib = $pf->getAppLib();
         <ul>
             <li><a href="thedashboard.php">Dashboard</a></li>
             <li><a href="apps.php">Apps</a></li>
+            <li><a href="logout.php">Logout</a></li>
         </ul>
     </nav>
 
